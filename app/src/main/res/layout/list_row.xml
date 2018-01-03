@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:elevation="1dp"
+    android:longClickable="true"
+    android:orientation="horizontal"
+    android:padding="15dip">
+
+    <!-- Title Of Song-->
+    <TextView
+        android:id="@+id/editBlocksListName_2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif"
+        android:text="Name"
+        android:textColor="@android:color/black"
+        android:textIsSelectable="false"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- Artist Name -->
+    <TextView
+        android:id="@+id/teacher"
+        android:layout_width="307dp"
+        android:layout_height="23dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editBlocksListName_2"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="Teacher + Room"
+        android:textColor="@android:color/darker_gray"
+        android:textIsSelectable="false"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBlocksListName_2"
+        tools:layout_editor_absoluteY="55dp" />
+
+
+    <!-- Rightend Duration -->
+    <TextView
+        android:id="@+id/room"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/editBlocksListName_2"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginTop="4dp"
+        android:gravity="right"
+        android:text="Room"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textIsSelectable="false"
+        android:textSize="15dip"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageButton
+        android:id="@+id/block_options"
+        android:layout_width="38dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+
+
+</android.support.constraint.ConstraintLayout>

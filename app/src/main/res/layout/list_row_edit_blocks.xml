@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="beforeDescendants"
+    android:longClickable="true"
+
+    android:orientation="horizontal"
+    android:padding="15dip">
+
+    <!-- Title Of Song-->
+
+
+    <EditText
+        android:id="@+id/editBlocksList_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        android:ems="8"
+        android:filterTouchesWhenObscured="false"
+        android:inputType="text|textPersonName"
+        android:text="Block Name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editBlocksList_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:text="Block Teacher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBlocksList_name" />
+
+    <EditText
+        android:id="@+id/editBlocksList_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:elevation="24dp"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:text="Block Room"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBlocksList_teacher" />
+
+    <TextView
+        android:id="@+id/editBlocksList_block"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="0dp"
+        android:text="Block A"
+        android:textAlignment="textEnd"
+        app:layout_constraintLeft_toRightOf="@+id/editBlocksList_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.062" />
+
+    <Button
+        android:id="@+id/editBlocksList_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimary"
+        android:text="Update"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/editBlocksList_room"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.066" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:elevation="0dp"
+    android:longClickable="true"
+    android:orientation="horizontal"
+    android:padding="15dip"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+
+    <!-- Title Of Song-->
+    <TextView
+        android:id="@+id/editBlocksListName_2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif"
+        android:text="Name"
+        android:textColor="@android:color/black"
+        android:textIsSelectable="false"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- Artist Name -->
+    <TextView
+        android:id="@+id/editBlocksListTeacher_2"
+        android:layout_width="307dp"
+        android:layout_height="19dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editBlocksListName_2"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="Teacher"
+        android:textColor="@android:color/black"
+        android:textIsSelectable="false"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBlocksListName_2" />
+
+
+    <!-- Rightend Duration -->
+    <TextView
+        android:id="@+id/editBlocksListRoom_2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/editBlocksListName_2"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginTop="4dp"
+        android:gravity="right"
+        android:text="Room"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textIsSelectable="false"
+        android:textSize="15dip"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageButton
+        android:id="@+id/editBlocksListButton_2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
+
+
+</android.support.constraint.ConstraintLayout>

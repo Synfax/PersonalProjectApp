@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/LogOut"
+        android:title="@string/LogOut" >
+        <!-- "file" submenu -->
+
+    </item>
+    <item android:id="@+id/Refresh"
+        android:title="@string/Refresh" >
+        <!-- "file" submenu -->
+
+    </item>
+    <item android:id="@+id/AboutSection"
+        android:title="About">
+
+    </item>
+</menu>
