@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements  DialogEditEventF
     @TargetApi(19)
     protected void onCreate(Bundle savedInstanceState) {
         mActivity = MainActivity.this;
+        String s = "GIT TEST?";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle extras = getIntent().getExtras();
