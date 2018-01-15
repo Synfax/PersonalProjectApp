@@ -106,8 +106,6 @@ public class MainActivity extends AppCompatActivity
         );
 
 
-
-
         getSupportActionBar().setElevation(0);
 
         setupViewPager(viewPager);
@@ -132,24 +130,34 @@ public class MainActivity extends AppCompatActivity
     }
 
     void setUpNotifications() {
+
+        clearNotifications();
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         Boolean settings_notifications_daily = pref.getBoolean("settings_notifications_daily", false);
-        Integer hourOfTheDay = pref.getInt("settings_notifications_daily_hour", 0);
-        Integer minuteOfTheDay = pref.getInt("settings_notifications_daily_minute", 0);
+        Integer hourOfTheDay = Integer.valueOf(settingsPreferences.getString("settings_notifications_hour", "6"));
+        Integer minuteOfTheDay = Integer.valueOf(settingsPreferences.getString("settings_notifications_minute", "30"));
         Integer secondOfTheDay = pref.getInt("settings_notifications_daily_second", 0);
+
+        if(hourOfTheDay > 23 || hourOfTheDay < 0) {
+            hourOfTheDay = 6;
+        }
+        if(minuteOfTheDay > 59 || minuteOfTheDay < 0) {
+            minuteOfTheDay = 30;
+        }
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Hong_Kong"));
-        calendar.set(Calendar.HOUR_OF_DAY, 6);
-        calendar.set(Calendar.MINUTE, 30);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfTheDay);
+        calendar.set(Calendar.MINUTE, minuteOfTheDay);
+
         Intent intent1 = new Intent(MainActivity.this, AlarmReceiver.class);
 
         intent1.putExtra("JSON_SUBJECTS_BY_LETTER", JSON_SUBJECTS_BY_LETTER.toString());
         intent1.putExtra("JSON_ORDER", JSON_ORDER.toString());
 
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        Toast.makeText(MainActivity.this, hourOfTheDay.toString() + minuteOfTheDay.toString(), Toast.LENGTH_LONG).show();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
@@ -180,12 +188,10 @@ public class MainActivity extends AppCompatActivity
             //setUpEditBlocks(JSON_SUBJECTS);
 
             Log.d("BOOL", Boolean.toString(settingsPreferences.getBoolean("notifications_daily", false)));
-            t(Boolean.toString(settingsPreferences.getBoolean("notifications_daily", false)));
-            if(settingsPreferences.getBoolean("notifications_daily", false)) {
+
+            if (settingsPreferences.getBoolean("notifications_daily", false)) {
                 setUpNotifications();
             }
-
-
 
 
         } catch (JSONException e) {
@@ -233,7 +239,7 @@ public class MainActivity extends AppCompatActivity
         list.setAdapter(adapter);
 
         timetableSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.timetable_swiperefresh);
-                timetableSwipeRefreshLayout.setOnRefreshListener(
+        timetableSwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
@@ -292,13 +298,11 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
     public void refresh() {
-        if(timetableSwipeRefreshLayout != null) {
+        if (timetableSwipeRefreshLayout != null) {
             timetableSwipeRefreshLayout.setRefreshing(true);
         }
-        if(eventSwipeRefreshLayout != null) {
+        if (eventSwipeRefreshLayout != null) {
             eventSwipeRefreshLayout.setRefreshing(true);
         }
 
@@ -306,12 +310,8 @@ public class MainActivity extends AppCompatActivity
         ListView eventList = (ListView) findViewById(R.id.EventList);
 
 
-
         timetableList.setAdapter(null);
         eventList.setAdapter(null);
-
-
-
 
 
         Map<String, String> arguments = new LinkedHashMap<>();
@@ -320,8 +320,6 @@ public class MainActivity extends AppCompatActivity
         //showProgress(true);
         ServerCommunication serverCommunication = new ServerCommunication(MainActivity.this, SERVER_MODE.MASTER);
         serverCommunication.execute(arguments);
-
-
 
 
     }
@@ -383,10 +381,9 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-            if(viewPager.getCurrentItem() == 1) {
+            if (viewPager.getCurrentItem() == 1) {
                 viewPager.setCurrentItem(0, true);
-            }
-            else {
+            } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Log Out")
                         .setMessage("Are you sure you would like to log out?")
@@ -429,12 +426,19 @@ public class MainActivity extends AppCompatActivity
             startActivity(settingsIntent);
             return true;
         }
-        if(id == R.id.action_refresh) {
+        if (id == R.id.action_refresh) {
             refresh();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void clearNotifications() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.cancelAll();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -453,7 +457,7 @@ public class MainActivity extends AppCompatActivity
             //TODO add extrahls
             String username = getPreference("username", "");
 
-            if(username.equalsIgnoreCase("synfax")) {
+            if (username.equalsIgnoreCase("synfax")) {
 
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
 
@@ -470,7 +474,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent1 = new Intent(MainActivity.this, AlarmReceiver.class);
 
 
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
                 am.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
             }
@@ -481,16 +485,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_calendar) {
             //TODO add calendar
-            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-            notificationManager.cancelAll();
+            clearNotifications();
         } else if (id == R.id.nav_refresh) {
             refresh();
         } else if (id == R.id.nav_settings) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
-        }
-        else if(id == R.id.nav_about) {
+        } else if (id == R.id.nav_about) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("About")
                     .setMessage("Made by: Paul Spasojevic \n\n" +
@@ -504,8 +505,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     });
             builder.show();
-        }
-        else if(id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             logOut();
         }
 
@@ -526,10 +526,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     public void t(String s) {
         Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
     }
+
     public void showSnackBar(String message) {
         Snackbar.make(findViewById(R.id.mainLayout), message, Snackbar.LENGTH_LONG).show();
     }
@@ -537,7 +537,7 @@ public class MainActivity extends AppCompatActivity
     public void returnMasterData(String value, SERVER_MODE server_mode, SERVER_RESPONSE server_response) {
         String result = value;
 
-        if(server_mode == SERVER_MODE.MASTER) {
+        if (server_mode == SERVER_MODE.MASTER) {
             if (server_response == SERVER_RESPONSE.FAILURE) {
 
                 t("Request Failed: Attempting to load older saved data.");
@@ -557,10 +557,10 @@ public class MainActivity extends AppCompatActivity
                 showProgress(false);
             }
             if (server_response == SERVER_RESPONSE.SUCCESS) {
-                if(timetableSwipeRefreshLayout != null) {
+                if (timetableSwipeRefreshLayout != null) {
                     timetableSwipeRefreshLayout.setRefreshing(false);
                 }
-                if(eventSwipeRefreshLayout != null) {
+                if (eventSwipeRefreshLayout != null) {
                     eventSwipeRefreshLayout.setRefreshing(false);
                 }
 
@@ -572,8 +572,7 @@ public class MainActivity extends AppCompatActivity
                 } catch (JSONException e) {
                 }
             }
-        }
-        else {
+        } else {
             if (server_response == SERVER_RESPONSE.SUCCESS) {
                 if (value.equalsIgnoreCase("true")) {
                     refresh();
@@ -581,11 +580,13 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     showSnackBar("Failure: Please Retry");
                 }
-            } if (server_response == SERVER_RESPONSE.FAILURE) {
+            }
+            if (server_response == SERVER_RESPONSE.FAILURE) {
                 showSnackBar("Failure: Please Retry");
             }
         }
     }
+
     public void showEditEventFragment(final Integer position, View view) {
 
 
@@ -595,9 +596,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
-                switch(item.getTitle().toString()) {
-                    case "Edit":
-                    {
+                switch (item.getTitle().toString()) {
+                    case "Edit": {
                         DialogEditEventFragment DFragmentTwo = new DialogEditEventFragment();
                         Bundle args = new Bundle();
 
@@ -619,12 +619,11 @@ public class MainActivity extends AppCompatActivity
                         //delete
                     {
                         ServerCommunication serverCommunication = new ServerCommunication(MainActivity.this, SERVER_MODE.DELETE_EVENT);
-                        Map<String, String> args = new LinkedHashMap<String,String>();
+                        Map<String, String> args = new LinkedHashMap<String, String>();
 
                         try {
                             args.put("Name", JSON_EVENTS.getJSONObject(position).getString("id").toString());
-                        }
-                        catch(JSONException e) {
+                        } catch (JSONException e) {
                             Log.e("JSONERROR", e.toString());
                         }
                         args.put("URL", "https://synfax.co/pp/android/editcalendar.php");
@@ -638,7 +637,6 @@ public class MainActivity extends AppCompatActivity
 
                     }
                     break;
-
 
 
                 }
@@ -669,14 +667,13 @@ public class MainActivity extends AppCompatActivity
                         DialogEditBlockFragment DFragment = new DialogEditBlockFragment();
                         Bundle args = new Bundle();
                         try {
-                            if(type == "timetable") {
+                            if (type == "timetable") {
 
                                 args.putString("block_name", JSON_BLOCKS.getJSONObject(position).getString("name"));
                                 args.putString("block_teacher", JSON_BLOCKS.getJSONObject(position).getString("teacher"));
                                 args.putString("block_room", JSON_BLOCKS.getJSONObject(position).getString("room"));
                                 args.putString("block_letter", JSON_BLOCKS.getJSONObject(position).getString("letter"));
-                            }
-                            else if(type == "subjects") {
+                            } else if (type == "subjects") {
                                 args.putString("block_name", JSON_SUBJECTS.getJSONObject(position).getString("name"));
                                 args.putString("block_teacher", JSON_SUBJECTS.getJSONObject(position).getString("teacher"));
                                 args.putString("block_room", JSON_SUBJECTS.getJSONObject(position).getString("room"));
@@ -711,31 +708,29 @@ public class MainActivity extends AppCompatActivity
                 startActivity(i);
                 */
 
-                DialogAddEventFragment DFragmentAddEvent = new DialogAddEventFragment();
-                Bundle args = new Bundle();
+        DialogAddEventFragment DFragmentAddEvent = new DialogAddEventFragment();
+        Bundle args = new Bundle();
 
-                args.putString("event_subjects", JSON_SUBJECTS.toString());
-
-
-
-                DFragmentAddEvent.setArguments(args);
+        args.putString("event_subjects", JSON_SUBJECTS.toString());
 
 
-                DFragmentAddEvent.show(getSupportFragmentManager(), "DialogAddEventFragment");
+        DFragmentAddEvent.setArguments(args);
 
+
+        DFragmentAddEvent.show(getSupportFragmentManager(), "DialogAddEventFragment");
 
 
     }
 
     public void returnOptionsButton(View view, Integer position, String listName) {
 
-        switch(listName) {
+        switch (listName) {
             case "TimetableList":
                 showEditBlockFragment(position, view, "timetable");
                 break;
 
             case "EventList":
-                showEditEventFragment(position,view);
+                showEditEventFragment(position, view);
                 break;
 
             case "EditBlocksList":

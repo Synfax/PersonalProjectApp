@@ -8,4 +8,5 @@
     <color name="Background">#fafafa</color>
     <color name="GrayText">#aaaaaa</color>
     <color name="ListBackColor">#5E6FC7</color>
+    <color name="WebsiteBackgroundColor">#4F91F7</color>
 </resources>
