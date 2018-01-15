@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -36,12 +37,14 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static JSONObject JSON_SUBJECTS_BY_LETTER;
     public static JSONArray JSON_EVENTS;
 
+    SharedPreferences settingsPreferences;
+
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
+        settingsPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         SharedPreferences pref = context.getApplicationContext().getSharedPreferences("MyPref", 0);
 
@@ -143,8 +146,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         int mNotificationId = 001;
 
 
+        if(settingsPreferences.getBoolean("settings_notifications_blocks", false)) {
+            notificationManager.notify(mNotificationId, mBuilder.build());
+        }
 
-        notificationManager.notify(mNotificationId, mBuilder.build());
 
 
         // START EVENT REMINDER SECTION
@@ -217,9 +222,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             int mNotificationId2 = 002;
 
+            if(settingsPreferences.getBoolean("settings_notifications_events", false)) {
+                notificationManager.notify(mNotificationId2, mBuilder2.build());
+            }
 
 
-            notificationManager.notify(mNotificationId2, mBuilder2.build());
+
         }
 
 

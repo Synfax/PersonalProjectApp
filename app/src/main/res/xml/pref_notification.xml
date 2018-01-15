@@ -9,23 +9,30 @@
 
     <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="notifications_daily"
         android:title="Daily Notifications" />
     <SwitchPreference
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:dependency="notifications_daily"
-        android:key="notifications_new_message_vibrate"
-        android:title="@string/pref_title_vibrate" />
+        android:key="settings_notifications_blocks"
+        android:title="Block Notifications" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:dependency="notifications_daily"
+        android:key="settings_notifications_events"
+        android:title="Event Notifications" />
     <EditTextPreference
         android:defaultValue="6"
-        android:key="settings_notifications_hour"
+        android:digits="2"
         android:inputType="number"
+        android:key="settings_notifications_hour"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Notification Hour (24h time)" />
     <EditTextPreference
         android:defaultValue="30"
+        android:digits="2"
         android:inputType="number"
         android:key="settings_notifications_minute"
         android:selectAllOnFocus="true"

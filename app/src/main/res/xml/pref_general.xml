@@ -11,6 +11,18 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/pref_title_display_name" />
+    <EditTextPreference
+        android:defaultValue="Email Address"
+        android:key="account_email"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="E-Mail" />
+    <EditTextPreference
+        android:inputType="textPassword"
+        android:key="account_password"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Password" />
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->
