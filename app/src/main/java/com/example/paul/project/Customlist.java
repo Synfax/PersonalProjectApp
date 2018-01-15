@@ -67,7 +67,7 @@ public class Customlist extends ArrayAdapter<String> {
 
         //room.setTypeface(typeface);
 
-        ImageButton optionsButton = (ImageButton) rowView.findViewById(R.id.block_options);
+        ImageButton optionsButton = (ImageButton) rowView.findViewById(R.id.listrowOptions);
 
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override

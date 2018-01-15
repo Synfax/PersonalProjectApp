@@ -7,4 +7,5 @@
     <color name="ListBackgroundColor">#0099ff</color>
     <color name="Background">#fafafa</color>
     <color name="GrayText">#aaaaaa</color>
+    <color name="ListBackColor">#5E6FC7</color>
 </resources>

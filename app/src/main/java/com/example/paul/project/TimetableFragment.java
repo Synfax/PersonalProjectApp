@@ -3,6 +3,8 @@ package com.example.paul.project;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 public class TimetableFragment extends Fragment {
 
 
+
+
     public TimetableFragment() {
         // Required empty public constructor
     }
@@ -23,7 +27,14 @@ public class TimetableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_layout_timetable, container, false);
+
+        View fragmentView = inflater.inflate(R.layout.fragment_layout_timetable, container, false);
+
+
+
+
+
+        return fragmentView;
     }
 
 }
