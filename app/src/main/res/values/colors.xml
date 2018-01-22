@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="colorPrimary">#4F91F7</color>
+    <color name="colorPrimaryDark">#3f51b5</color>
     <color name="colorAccent">#ff4081</color>
     <color name="White">#ffffff</color>
     <color name="ListBackgroundColor">#0099ff</color>
@@ -9,4 +9,6 @@
     <color name="GrayText">#aaaaaa</color>
     <color name="ListBackColor">#5E6FC7</color>
     <color name="WebsiteBackgroundColor">#4F91F7</color>
+    <color name="oldColorPrimary">#3f51b5</color>
+    <color name="oldColorPrimaryDark">#303f9f</color>
 </resources>
