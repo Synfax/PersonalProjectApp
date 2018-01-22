@@ -40,6 +40,8 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.paul.project.datatypes.Subject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity
     public static JSONObject JSON_ORDER;
     public static JSONObject JSON_SUBJECTS_BY_LETTER;
     public static JSONArray JSON_COMBINED_SUBJECTS;
+
+
 
     public SwipeRefreshLayout timetableSwipeRefreshLayout, eventSwipeRefreshLayout;
 
