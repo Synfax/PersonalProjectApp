@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background"
+    android:elevation="0dp"
     tools:context="com.example.paul.project.MainActivity">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,16 +12,15 @@
         android:id="@+id/F3CL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Background">
+        android:background="@color/Background"
+        android:elevation="0dp">
 
         <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/timetable_swiperefresh"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
+            android:elevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/White"
     android:descendantFocusability="blocksDescendants"
-    android:elevation="1dp"
+    android:elevation="0dp"
     android:longClickable="true"
     android:orientation="horizontal"
     android:padding="15dip">

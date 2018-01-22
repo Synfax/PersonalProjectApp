@@ -58,7 +58,7 @@
             android:background="@color/White"
             android:elevation="0dp"
             android:text="Add Event"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/black"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.504"

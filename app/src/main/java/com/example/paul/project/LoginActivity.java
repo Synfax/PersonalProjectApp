@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -66,13 +67,17 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE); // 0
         Boolean logged = pref.getBoolean("logged", false);
+        Boolean stayLogged = pref.getBoolean("stayLoggedIn", true);
         hideControls(true);
 
 
         if(logged) {
-            //confusing if statement but SharedPreferences inverts the Boolean
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
+            if(stayLogged) {
+                //confusing if statement but SharedPreferences inverts the Boolean
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+            }
+
         }
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.username);
@@ -101,16 +106,26 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void init(String result) {Toast.makeText(LoginActivity.this, result.split(":")[0], Toast.LENGTH_LONG).show();
+    public void init(String result) {
+
         if (result.split(":")[0].equalsIgnoreCase("true")) {
             //LOGGED IN
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0
+            CheckBox checkBox = (CheckBox) findViewById(R.id.stayLoggedInCheckBox);
+            Boolean stayLoggedIn = true;
+
+            if(!checkBox.isChecked()) {
+                stayLoggedIn = false;
+            }
+
 
             Editor editor = pref.edit();
             //on the login store the login
             editor.putString("username", username);
             editor.putBoolean("logged", true);
             editor.putString("mobileAuthKey", result.split(":")[1]);
+            editor.putBoolean("stayLoggedIn", stayLoggedIn);
+
 
 
             editor.commit();
@@ -131,12 +146,13 @@ public class LoginActivity extends AppCompatActivity {
         Button register = (Button) findViewById(R.id.register_button);
         Button signin = (Button) findViewById(R.id.email_sign_in_button);
         ProgressBar progress = (ProgressBar) findViewById(R.id.login_progress);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.stayLoggedInCheckBox);
 
         username.setVisibility(show ? View.VISIBLE : View.GONE);
         password.setVisibility(show ? View.VISIBLE : View.GONE);
         register.setVisibility(show ? View.VISIBLE : View.GONE);
         signin.setVisibility(show ? View.VISIBLE : View.GONE);
-
+        checkBox.setVisibility(show ? View.VISIBLE : View.GONE);
         progress.setVisibility(show ? View.GONE : View.VISIBLE);
 
     }
