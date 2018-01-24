@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 public class Subject implements Serializable{
 
-    String name;
-    String teacher;
-    String room;
+    String name = "";
+    String teacher = "";
+    String room = "";
 
 
     public String getName() {

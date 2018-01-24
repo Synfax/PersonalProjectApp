@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity
     public static JSONObject JSON_SUBJECTS_BY_LETTER;
     public static JSONArray JSON_COMBINED_SUBJECTS;
 
-    public static ArrayList<Subject> SubjectList, ExtraHlList, CombinedList, TimetableList;
+    public static ArrayList<Subject> SubjectList, ExtraHlList, CombinedList, TimetableList = new ArrayList<>();
+    public static ArrayList<ArrayList<Subject>> WeeklyTimetableList = new ArrayList<>();
 
 
 
@@ -191,6 +192,18 @@ public class MainActivity extends AppCompatActivity
             setPreference("ORDER", JSON_ORDER.toString());
             setPreference("EVENTS", JSON_EVENTS.toString());
 
+            for(int l = 0; l < 5; l++) {
+                ArrayList<Subject> DaySubjects = new ArrayList<>();
+                for(int p = 0; p < 4; p++) {
+                    Subject subject = new Subject();
+                    subject.setName(arr.getJSONArray("schedule").getJSONArray(l).getJSONObject(p).get("name").toString());
+                    subject.setTeacher(arr.getJSONArray("schedule").getJSONArray(l).getJSONObject(p).get("teacher").toString());
+                    subject.setRoom(arr.getJSONArray("schedule").getJSONArray(l).getJSONObject(p).get("room").toString());
+                    DaySubjects.add(subject);
+                }
+                WeeklyTimetableList.add(DaySubjects);
+            }
+            t(WeeklyTimetableList.get(0).get(0).getAll());
             for (int i = 0; i <= 3; i++) {
                 TimetableList.add(i, new Subject());
                 try {
