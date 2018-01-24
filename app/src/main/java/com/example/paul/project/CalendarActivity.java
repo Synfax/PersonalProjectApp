@@ -61,8 +61,8 @@ public class CalendarActivity extends AppCompatActivity {
         adapter.addFragment(PlaceholderFragment.newInstance(1), "M");
         adapter.addFragment(PlaceholderFragment.newInstance(2), "T");
         adapter.addFragment(PlaceholderFragment.newInstance(3), "W");
-        adapter.addFragment(PlaceholderFragment.newInstance(3), "T");
-        adapter.addFragment(PlaceholderFragment.newInstance(3), "F");
+        adapter.addFragment(PlaceholderFragment.newInstance(4), "T");
+        adapter.addFragment(PlaceholderFragment.newInstance(5), "F");
 
 
         viewPager.setAdapter(adapter);
@@ -137,6 +137,8 @@ public class CalendarActivity extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -151,6 +153,7 @@ public class CalendarActivity extends AppCompatActivity {
          * number.
          */
         public static PlaceholderFragment newInstance(int sectionNumber) {
+
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -168,21 +171,11 @@ public class CalendarActivity extends AppCompatActivity {
 
 
             ListView list;
-            String[] blocks = new String[4];
-            String[] rooms = new String[4];
-            String[] teachers = new String[4];
 
-            for (int i = 0; i <= 3; i++) {
-                try {
-                    blocks[i] = (json.getJSONObject(i).getString("name"));
-                    teachers[i] = json.getJSONObject(i).getString("teacher");
-                    rooms[i] = json.getJSONObject(i).getString("room");
-                } catch (JSONException e) {
+            String[] Length = new String[4];
 
-                }
-            }
 
-            Customlist adapter = new Customlist(getActivity(), blocks, rooms, teachers, "TimetableList");
+            CustomCalendarList adapter = new CustomCalendarList(getActivity(), MainActivity.WeeklyTimetableList, Length, getArguments().getInt(ARG_SECTION_NUMBER));
             list = (ListView) rootView.findViewById(R.id.CalendarFragmentList);
             //list.setOnItemLongClickListener(mHandler2);
             list.setAdapter(adapter);
@@ -212,7 +205,7 @@ public class CalendarActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 5;
         }
 
         @Override

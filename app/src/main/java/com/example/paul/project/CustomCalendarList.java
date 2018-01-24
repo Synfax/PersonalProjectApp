@@ -10,30 +10,28 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.paul.project.datatypes.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Paul on 4/16/17.
  */
 
-public class Customlist extends ArrayAdapter<String> {
+public class CustomCalendarList extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final String[] blocks;
-    private final String[] rooms;
-    private final String[] teacher;
-    private final String listName;
+    private final ArrayList<ArrayList<Subject>> subjectArrayList;
+    private final Integer number;
 
     private ButtonInterface mOptionsButtonCallback;
 
-    public Customlist(Activity context,
-                      String[] blocks, String[] rooms, String[] teacher, String listName) {
-        super(context, R.layout.list_row, blocks);
-
+    public CustomCalendarList(Activity context, ArrayList<ArrayList<Subject>> subjectArrayList, String[] Length, Integer number) {
+        super(context, R.layout.list_row, Length);
         this.context = context;
-        this.blocks = blocks;
-        this.rooms = rooms;
-        this.teacher = teacher;
-        this.listName = listName;
-
+        this.subjectArrayList = subjectArrayList;
+        this.number = number;
     }
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
@@ -58,11 +56,12 @@ public class Customlist extends ArrayAdapter<String> {
         TextView blockinfo = (TextView) rowView.findViewById(R.id.listrowInformation);
 
 
-        block.setText(blocks[position]);
+        block.setText(subjectArrayList.get(number - 1).get(position).getName());
+        blockinfo.setText(subjectArrayList.get(number - 1).get(position).getTeacher() + " \u2022 " +  subjectArrayList.get(number - 1).get(position).getRoom());
         //block.setTypeface(typeface, Typeface.BOLD);
 
 
-        blockinfo.setText(teacher[position].toString() + " \u2022 " + rooms[position].toString() );
+        //blockinfo.setText(teacher[position].toString() + " \u2022 " + rooms[position].toString() );
         //teacher2.setTypeface(typeface);
 
 
@@ -73,7 +72,7 @@ public class Customlist extends ArrayAdapter<String> {
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOptionsButtonCallback.returnOptionsButton(v, position, listName);
+                //mOptionsButtonCallback.returnOptionsButton(v, position, listName);
             }
         });
 

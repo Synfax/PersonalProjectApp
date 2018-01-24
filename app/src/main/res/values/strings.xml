@@ -82,4 +82,7 @@
     <string name="title_activity_janjasndasndansdjas">Settings</string>
     <string name="title_activity_calendar">CalendarActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_main2">
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbMain2Activity
+    </string>
 </resources>
