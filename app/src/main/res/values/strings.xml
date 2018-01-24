@@ -80,4 +80,6 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_janjasndasndansdjas">Settings</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

@@ -41,10 +41,8 @@ public class Subject implements Serializable{
         return "Name: " + name + "\n" + "Teacher: " + teacher + "\n" + "Room: " + room + "\n";
     }
 
-    public Subject(String name, String teacher, String room) {
-        this.name = name;
-        this.teacher = teacher;
-        this.room = room;
+    public Subject() {
+
     }
 
 }

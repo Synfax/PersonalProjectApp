@@ -47,6 +47,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,6 +73,10 @@ public class MainActivity extends AppCompatActivity
     public static JSONObject JSON_ORDER;
     public static JSONObject JSON_SUBJECTS_BY_LETTER;
     public static JSONArray JSON_COMBINED_SUBJECTS;
+
+    public static ArrayList<Subject> SubjectList, ExtraHlList, CombinedList, TimetableList;
+
+
 
 
 
@@ -185,6 +190,17 @@ public class MainActivity extends AppCompatActivity
             setPreference("SUBJECTS_BY_LETTER", JSON_SUBJECTS_BY_LETTER.toString());
             setPreference("ORDER", JSON_ORDER.toString());
             setPreference("EVENTS", JSON_EVENTS.toString());
+
+            for (int i = 0; i <= 3; i++) {
+                TimetableList.add(i, new Subject());
+                try {
+                    TimetableList.get(i).setName(JSON_BLOCKS.getJSONObject(i).getString("name"));
+                    TimetableList.get(i).setTeacher(JSON_BLOCKS.getJSONObject(i).getString("teacher"));
+                    TimetableList.get(i).setRoom(JSON_BLOCKS.getJSONObject(i).getString("room"));
+                } catch (JSONException e) {
+                    t(e.toString());
+                }
+            }
 
 
             setTimetable(JSON_BLOCKS);
@@ -488,8 +504,8 @@ public class MainActivity extends AppCompatActivity
             showAddEventDialog();
 
         } else if (id == R.id.nav_calendar) {
-            //TODO add calendar
-            clearNotifications();
+            Intent i = new Intent(MainActivity.this, CalendarActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_refresh) {
             refresh();
         } else if (id == R.id.nav_settings) {
